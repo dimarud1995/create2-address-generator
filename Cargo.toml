@@ -1,0 +1,30 @@
+[package]
+name = "create2-miner"
+version = "0.1.0"
+edition = "2021"
+description = "GPU-accelerated CREATE2 salt miner for vanity, deterministic, cross-chain contract addresses"
+
+[[bin]]
+name = "create2-miner"
+path = "src/main.rs"
+
+[dependencies]
+clap = { version = "4", features = ["derive"] }
+tiny-keccak = { version = "2", features = ["keccak"] }
+rayon = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+hex = "0.4"
+anyhow = "1"
+ctrlc = "3"
+num_cpus = "1"
+regex = "1"
+
+[target.'cfg(target_os = "macos")'.dependencies]
+metal = "0.29"
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+panic = "abort"

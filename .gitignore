@@ -1,0 +1,6 @@
+/target
+.env.local
+.env*
+.claude/
+e2e/
+examples/
